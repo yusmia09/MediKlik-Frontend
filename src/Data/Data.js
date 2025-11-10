@@ -48,9 +48,10 @@ export const SidebarData = [
 export const CardsData = [
     {
         title: "Sales",
-        color: {
-            backGround: "linear-gradient(180deg, #3DA7D9 0%, #8DBC42 100%)",
-            boxShadow: "0px 10px 20px 0px #c7e6d2",
+       color: {
+        backGround: "linear-gradient(180deg, #C3A3FF 0%, #A78BFA 100%)",
+        boxShadow:"0 12px 25px rgba(167, 139, 250, 0.4), 0 6px 10px rgba(195, 163, 255, 0.3)",
+        border: "1px solid rgba(167, 139, 250, 0.5)"
         },
         barValue: 70,
         value: "25,970",
@@ -65,9 +66,10 @@ export const CardsData = [
 
     {
         title: "Revenue",
-        color: {
-            backGround: "linear-gradient(180deg, #8DBC42 0%, #4DD4B0 100%)",
-            boxShadow: "0px 10px 20px 0px #b6f0d4",
+       color: {
+        backGround: "linear-gradient(180deg, #4DA7FF 0%, #7FE9F5 100%)",
+        boxShadow:"0 12px 25px rgba(77, 167, 255, 0.45), 0 6px 10px rgba(127, 233, 245, 0.35)",
+        border: "1px solid rgba(77, 167, 255, 0.5)",
         },
         barValue: 80,
         value: "14,270",
@@ -82,9 +84,10 @@ export const CardsData = [
 
     {
         title: "Expenses",
-        color: {
-            backGround: "linear-gradient(180deg, #A7E1FF 0%, #FFB6C1 100%)",
-            boxShadow: "0px 10px 20px 0px #ffd6e0",
+       color: {
+        backGround: "linear-gradient(180deg, #FF8FA3 0%, #FFB6C1 100%)",
+        boxShadow:"0 12px 25px rgba(255, 143, 163, 0.45), 0 6px 10px rgba(255, 182, 193, 0.3)",
+        border: "1px solid rgba(255, 143, 163, 0.5)",
         },
         barValue: 60,
         value: "4,270",
