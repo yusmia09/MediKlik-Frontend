@@ -12,37 +12,42 @@ import {
     
 } from "@iconscout/react-unicons"
 
+import img1 from '../assets/img4.png';
+import img2 from '../assets/img6.png';
+import img3 from '../assets/img7.png';
+
 //SidebarData
 export const SidebarData = [
     {
         icon: UilEstate,
         heading: "Dashboard",
+        // path: ""
     },
     
     {
         icon: UilClipboardAlt,
         heading: "Orders",
+        // path: "orders"
     },
 
     {
         icon: UilUsersAlt,
         heading: "Customers",
+        // path: "customers",
     },
 
     {
         icon: UilFolder,
         heading: "Category",
+        // path: "category"
     },
 
     {
         icon: UilPackage,
-        heading: "Products"
+        heading: "Products",
+        // path: "products",
     },
     
-    {
-        icon: UilChart,
-        heading: 'Analytics'
-    },
 ];
 
 export const CardsData = [
@@ -99,4 +104,25 @@ export const CardsData = [
             },
         ],
     },
-]
+];
+
+export const UpdatesData = [
+  {
+    img: img1,
+    name: "Andrew Thomas",
+    noti: "has ordered Apple smart watch 2500mh battery.",
+    time: "25 seconds ago",
+  },
+  {
+    img: img2,
+    name: "James Bond",
+    noti: "has received Samsung gadget for charging battery.",
+    time: "30 minutes ago",
+  },
+  {
+    img: img3,
+    name: "Iron Man",
+    noti: "has ordered Apple smart watch, samsung Gear 2500mh battery.",
+    time: "2 hours ago",
+  },
+];

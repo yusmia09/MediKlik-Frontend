@@ -33,7 +33,7 @@
   background: var(--glass);
   border-radius: 2rem;
   box-shadow: var(--boxShadow);
-  gap: 16px;
+  gap: 10px;
   grid-template-columns: 11rem auto 20rem;
   overflow: hidden;
 }
