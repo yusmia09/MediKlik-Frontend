@@ -44,7 +44,7 @@ export default function Login() {
         if (res.data.user.role === "admin"){
         navigate("/admin");
         } else {
-        navigate("/home");
+        navigate("/");
         }
       } else {
         const res = await axios.post("http://localhost:5000/api/auth/register", formData);
@@ -57,7 +57,7 @@ export default function Login() {
     }
   };
   return (
-    <div className="w-[420px] bg-white p-8 rounded-2xl shadow-lg relative">
+    <div className="w-[420px]  bg-white p-8 rounded-2xl shadow-lg relative">
       {/* Logo */}
       <div className="flex justify-center mb-2 mt-[5px]">
         <img src={logo} alt="Logo MediKlik" className="w-25 object-contain" />

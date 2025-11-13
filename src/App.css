@@ -12,18 +12,26 @@
   --activeItem: rgba(168, 230, 207, 0.5);
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
 .App {
   background: linear-gradient(
     106.37deg,
     #A8E6CF 29.63%,
     #BFE9F5 51.55%,
-    #A0E9FF 90.85%
+    #A0E9FF 97.85%
   );
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   font-family: 'Inter', sans-serif;
+  overflow-y: auto;
 }
 
 .AppGlass {
@@ -37,6 +45,19 @@
   grid-template-columns: 11rem auto 20rem;
   overflow: hidden;
 }
+
+.noRightSide {
+  grid-template-columns: 11rem auto !important;
+  overflow-y: auto !important;
+
+}
+
+.noRightSide .MainContent {
+  overflow-y: auto;
+  max-height: 100vh;
+  padding-right: 1rem;
+}
+
 
 @media screen and (max-width: 1200px) {
   .AppGlass {

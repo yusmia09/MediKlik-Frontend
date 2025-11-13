@@ -21,31 +21,31 @@ export const SidebarData = [
     {
         icon: UilEstate,
         heading: "Dashboard",
-        // path: ""
+        path: "/admin"
     },
     
     {
         icon: UilClipboardAlt,
         heading: "Orders",
-        // path: "orders"
+         path: "/admin/order"
     },
 
     {
         icon: UilUsersAlt,
         heading: "Customers",
-        // path: "customers",
+         path: "/admin/customer",
     },
 
     {
         icon: UilFolder,
         heading: "Category",
-        // path: "category"
+        path: "/admin/category"
     },
 
     {
         icon: UilPackage,
         heading: "Products",
-        // path: "products",
+        path: "/admin/product",
     },
     
 ];

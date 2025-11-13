@@ -1,0 +1,5 @@
+.CustomerReview {
+  max-height: 200px; /* ✅ batasi tinggi */
+  overflow-y: auto;  /* ✅ kasih scroll kalau isinya panjang */
+  padding-right: 5px; /* biar scrollbar gak nabrak konten */
+}
