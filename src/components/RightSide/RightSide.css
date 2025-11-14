@@ -1,9 +1,0 @@
-.RightSide{
-    display: flex;
-    flex-direction: column;
-    width: 95%;
-    justify-content: space-evenly;
-    gap: 1rem;
-    margin-top: 2.5rem;
-
-}

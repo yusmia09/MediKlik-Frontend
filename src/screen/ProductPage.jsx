@@ -10,6 +10,7 @@ const ProductPage = () => {
   const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
+  const API_URL = "http://localhost:5000/api/cart";
 
   useEffect(() => {
     axios
@@ -19,16 +20,31 @@ const ProductPage = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  const handleAddToCart = (product) => {
+  // ✅ Perbaikan di sini aja
+  const handleAddToCart = async (product) => {
     if (!token) {
       alert("Silahkan login terlebih dahulu!");
       navigate("/login");
       return;
     }
 
-    // Logika tambah keranjang (bisa ke backend atau localStorage)
-    alert(`${product.name} berhasil ditambahkan ke keranjang!`);
+    try {
+      await axios.post(
+        API_URL,
+        { productId: product._id, quantity: 1 },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      alert(`${product.name} berhasil ditambahkan ke keranjang!`);
+    } catch (err) {
+      console.error("Gagal menambahkan ke keranjang:", err);
+      alert("Terjadi kesalahan saat menambahkan produk ke keranjang.");
+    }
   };
+  // ✅ Selesai ubah di sini
 
   if (loading)
     return (

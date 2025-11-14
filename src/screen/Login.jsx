@@ -42,7 +42,7 @@ export default function Login() {
         alert("Login berhasil")
 
         if (res.data.user.role === "admin"){
-        navigate("/admin");
+        navigate("/admin/dashboard");
         } else {
         navigate("/");
         }

@@ -21,19 +21,13 @@ export const SidebarData = [
     {
         icon: UilEstate,
         heading: "Dashboard",
-        path: "/admin"
+        path: "/admin/dashboard"
     },
     
     {
         icon: UilClipboardAlt,
         heading: "Orders",
          path: "/admin/order"
-    },
-
-    {
-        icon: UilUsersAlt,
-        heading: "Customers",
-         path: "/admin/customer",
     },
 
     {

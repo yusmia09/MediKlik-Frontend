@@ -2,10 +2,17 @@ import React from 'react';
 import logo from '../../assets/logo2.svg';
 import './Sidebar.css';
 import { SidebarData } from '../../Data/Data';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { UilSignOutAlt } from "@iconscout/react-unicons";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+  };
+
   return (
     <div className="Sidebar">
       {/* Logo */}
@@ -30,8 +37,9 @@ const Sidebar = () => {
         ))}
 
         {/* Signout */}
-        <div className="menuItem">
+        <div className="menuItem signout" onClick={handleLogout}>
           <UilSignOutAlt />
+          <span>Logout</span>
         </div>
       </div>
     </div>

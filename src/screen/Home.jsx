@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Truck, CheckCircle, Tag } from "lucide-react";
-import Header from "../components/Header"; // Panggil komponen Header
+import Header from "../components/Header";
 import heroImg from "../assets/hero.jpg";
 
 const API_URL = "http://localhost:5000/api/products";
@@ -12,10 +12,10 @@ const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const navigate = useNavigate();
   const productsRef = useRef(null);
 
+  // Ambil data produk dari backend
   const fetchProducts = async () => {
     try {
       const res = await axios.get(API_URL);
@@ -34,13 +34,31 @@ const HomePage = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleAddToCart = (product) => {
+  // 🛒 Fungsi tambah ke keranjang (koneksi ke backend)
+  const handleAddToCart = async (product) => {
     const token = localStorage.getItem("token");
     if (!token) {
+      alert("Silakan login terlebih dahulu!");
       navigate("/login");
       return;
     }
-    alert("Produk ditambahkan ke keranjang!");
+
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/cart",
+        { productId: product._id, quantity: 1 },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      if (res.status === 200 || res.status === 201) {
+        alert(`${product.name} berhasil ditambahkan ke keranjang!`);
+      } else {
+        alert("Gagal menambahkan produk ke keranjang.");
+      }
+    } catch (err) {
+      console.error("Error add to cart:", err);
+      alert("Terjadi kesalahan saat menambahkan ke keranjang.");
+    }
   };
 
   if (loading) {
@@ -53,7 +71,7 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans">
-      {/* ✅ Panggil Header */}
+      {/* ✅ Header */}
       <Header />
 
       {/* Hero Section */}
@@ -128,7 +146,7 @@ const HomePage = () => {
                       }}
                       className="mt-3 bg-cyan-600 text-white px-3 py-2 rounded-lg hover:bg-cyan-700 transition"
                     >
-                      Tambah
+                      Tambah ke Keranjang
                     </button>
                   </div>
                 </div>
@@ -182,7 +200,9 @@ const HomePage = () => {
             <p>Jam Operasional: 08.00 - 20.00 WIB</p>
           </div>
         </div>
-        <p className="text-sm text-gray-500 mt-6">© {new Date().getFullYear()} MediKlik. All rights reserved.</p>
+        <p className="text-sm text-gray-500 mt-6">
+          © {new Date().getFullYear()} MediKlik. All rights reserved.
+        </p>
       </footer>
     </div>
   );

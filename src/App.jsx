@@ -9,6 +9,8 @@ import ProductDetail from './screen/ProductDetail';
 import About from './screen/About';
 import CartPage from './screen/CartPage';
 import ProfilePage from './screen/Profile';
+import CheckoutPage from './screen/Checkout';
+import MyOrdersPage from './screen/MyOrders';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -22,6 +24,8 @@ function App() {
         <Route path='/about' element={<About/>} />
         <Route path='/cart' element={<CartPage/>} />
         <Route path='/profile' element={<ProfilePage />} />
+        <Route path='/checkout' element={<CheckoutPage />} />
+        <Route path='/my-orders' element={<MyOrdersPage />} />
         
       </Routes>
       

@@ -19,7 +19,7 @@ const AdminDashboard = () => {
 
         <div className="MainContent">
           <Routes>
-            <Route path="/" element={<MainDash />} />
+            <Route path="/dashboard" element={<MainDash />} />
             <Route path="category" element={<CategoryList />} />
             <Route path="product" element={<ProductList />} />
             <Route path="order" element={<OrderList /> } />

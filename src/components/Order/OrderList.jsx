@@ -7,10 +7,12 @@ const API_URL = "http://localhost:5000/api/orders";
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
+  const [filteredOrders, setFilteredOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [newStatus, setNewStatus] = useState("");
+  const [search, setSearch] = useState("");
   const token = localStorage.getItem("token");
 
   const fetchOrders = async () => {
@@ -19,6 +21,7 @@ const OrderList = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setOrders(res.data);
+      setFilteredOrders(res.data);
     } catch (err) {
       console.error(err);
     } finally {
@@ -39,25 +42,46 @@ const OrderList = () => {
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      alert("✅ Status updated!");
+      alert("Status updated!");
       setShowModal(false);
       setSelectedOrder(null);
       fetchOrders();
     } catch (err) {
       console.error(err);
-      alert("❌ Failed to update status");
+      alert("Failed to update status");
     }
+  };
+
+  const handleSearch = (e) => {
+    const value = e.target.value.toLowerCase();
+    setSearch(value);
+    setFilteredOrders(
+      orders.filter(
+        o =>
+          o.user?.username.toLowerCase().includes(value) ||
+          o.user?.email.toLowerCase().includes(value) ||
+          o._id.toLowerCase().includes(value)
+      )
+    );
   };
 
   useEffect(() => {
     fetchOrders();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p>Loading orders...</p>;
 
   return (
     <div className="OrderList">
       <h1>Order Management</h1>
+
+      <input
+        type="text"
+        placeholder="Search by User, Email or Order ID..."
+        value={search}
+        onChange={handleSearch}
+        className="search-bar"
+      />
 
       <table className="order-table">
         <thead>
@@ -75,8 +99,8 @@ const OrderList = () => {
         </thead>
 
         <tbody>
-          {orders.length > 0 ? (
-            orders.map((o, index) => (
+          {filteredOrders.length > 0 ? (
+            filteredOrders.map((o, index) => (
               <tr key={o._id}>
                 <td>{index + 1}</td>
                 <td>
@@ -91,7 +115,7 @@ const OrderList = () => {
                     </div>
                   ))}
                 </td>
-                <td>Rp{Number(o.totalAmount).toLocaleString("id-ID")}</td>
+                <td>Rp{Number(o.totalPrice).toLocaleString("id-ID")}</td>
                 <td>{o.paymentMethod}</td>
                 <td>{o.address}</td>
                 <td>{new Date(o.createdAt).toLocaleDateString("id-ID")}</td>
@@ -102,7 +126,7 @@ const OrderList = () => {
                 </td>
                 <td>
                   <button className="status-btn" onClick={() => openStatusModal(o)}>
-                    <UilEdit />
+                    <UilEdit /> Detail
                   </button>
                 </td>
               </tr>
@@ -115,7 +139,6 @@ const OrderList = () => {
         </tbody>
       </table>
 
-      {/* ==================== MODAL DETAIL & EDIT STATUS ==================== */}
       {showModal && selectedOrder && (
         <div className="modal-overlay">
           <div className="modal">
@@ -137,7 +160,7 @@ const OrderList = () => {
               <hr />
 
               <p><strong>Payment Method:</strong> {selectedOrder.paymentMethod}</p>
-              <p><strong>Total Amount:</strong> Rp{Number(selectedOrder.totalAmount).toLocaleString("id-ID")}</p>
+              <p><strong>Total Amount:</strong> Rp{Number(selectedOrder.totalPrice).toLocaleString("id-ID")}</p>
 
               <hr />
 
@@ -166,12 +189,8 @@ const OrderList = () => {
             </div>
 
             <div className="modal-actions">
-              <button className="cancel-btn" onClick={() => setShowModal(false)}>
-                Cancel
-              </button>
-              <button className="save-btn" onClick={handleStatusChange}>
-                Save
-              </button>
+              <button className="cancel-btn" onClick={() => setShowModal(false)}>Cancel</button>
+              <button className="save-btn" onClick={handleStatusChange}>Save</button>
             </div>
           </div>
         </div>

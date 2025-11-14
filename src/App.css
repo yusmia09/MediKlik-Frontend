@@ -12,12 +12,7 @@
   --activeItem: rgba(168, 230, 207, 0.5);
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-y: auto;
-}
+
 
 .App {
   background: linear-gradient(
@@ -36,8 +31,8 @@ html, body {
 
 .AppGlass {
   display: grid;
-  height: 97%;
-  width: 97%;
+  height: 100vh;
+  width: 100vw;
   background: var(--glass);
   border-radius: 2rem;
   box-shadow: var(--boxShadow);

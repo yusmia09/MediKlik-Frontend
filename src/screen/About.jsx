@@ -51,9 +51,7 @@ const About = () => {
           </ul>
         </section>
 
-        <p className="text-center text-gray-500 mt-12">
-          © {new Date().getFullYear()} Yusmia Washiatus Sani. Semua hak dilindungi.
-        </p>
+      
       </div>
     </Layout>
   );

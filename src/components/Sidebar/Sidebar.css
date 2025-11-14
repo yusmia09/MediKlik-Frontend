@@ -88,8 +88,19 @@
 }
 
 /* ---------- SIGN OUT ICON ---------- */
-.menu .menuItem:last-child {
-  margin-top: auto;
-  justify-content: center;
-  background: transparent;
+.menuItem.signout {
+  justify-content: flex-start; /* icon + text sejajar kiri */
+  padding-left: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--dark);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 0.7rem;
 }
+
+.menuItem.signout:hover {
+  background: rgba(255, 0, 0, 0.1);
+  color: red;
+}
+
